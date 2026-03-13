@@ -1,0 +1,464 @@
+openapi: 3.1.0
+info:
+  title: Google Storage Transfer API
+  description: >-
+    The Storage Transfer API provides programmatic access to Google Cloud Storage
+    Transfer Service for creating, managing, and monitoring data transfer jobs
+    between cloud storage systems and on-premises storage. It supports scheduling
+    transfers, configuring transfer options, managing agent pools, and monitoring
+    transfer operations.
+  version: v1
+  contact:
+    name: Google Cloud Support
+    url: https://cloud.google.com/storage-transfer/docs
+  termsOfService: https://cloud.google.com/terms
+externalDocs:
+  description: Storage Transfer API Documentation
+  url: https://cloud.google.com/storage-transfer/docs/reference/rest
+servers:
+  - url: https://storagetransfer.googleapis.com/v1
+    description: Production Server
+tags:
+  - name: TransferJobs
+    description: Operations for managing transfer jobs
+  - name: TransferOperations
+    description: Operations for monitoring transfer operations
+  - name: AgentPools
+    description: Operations for managing on-premises transfer agent pools
+security:
+  - oauth2: []
+paths:
+  /transferJobs:
+    get:
+      operationId: listTransferJobs
+      summary: List transfer jobs
+      description: Lists transfer jobs with optional filtering.
+      tags:
+        - TransferJobs
+      parameters:
+        - name: filter
+          in: query
+          required: true
+          schema:
+            type: string
+          description: >-
+            JSON filter for transfer jobs. Must include projectId field.
+        - name: pageSize
+          in: query
+          schema:
+            type: integer
+          description: Maximum number of results to return
+        - name: pageToken
+          in: query
+          schema:
+            type: string
+          description: Page token for pagination
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListTransferJobsResponse'
+    post:
+      operationId: createTransferJob
+      summary: Create a transfer job
+      description: Creates a transfer job that runs periodically.
+      tags:
+        - TransferJobs
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TransferJob'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransferJob'
+  /transferJobs/{jobName}:
+    get:
+      operationId: getTransferJob
+      summary: Get a transfer job
+      description: Gets a transfer job.
+      tags:
+        - TransferJobs
+      parameters:
+        - name: jobName
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: projectId
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransferJob'
+    patch:
+      operationId: updateTransferJob
+      summary: Update a transfer job
+      description: Updates a transfer job configuration.
+      tags:
+        - TransferJobs
+      parameters:
+        - name: jobName
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                projectId:
+                  type: string
+                transferJob:
+                  $ref: '#/components/schemas/TransferJob'
+                updateTransferJobFieldMask:
+                  type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransferJob'
+  /transferJobs/{jobName}:run:
+    post:
+      operationId: runTransferJob
+      summary: Run a transfer job
+      description: Starts a new operation for the specified transfer job.
+      tags:
+        - TransferJobs
+      parameters:
+        - name: jobName
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                projectId:
+                  type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Operation'
+  /transferOperations:
+    get:
+      operationId: listTransferOperations
+      summary: List transfer operations
+      description: Lists transfer operations with optional filtering.
+      tags:
+        - TransferOperations
+      parameters:
+        - name: name
+          in: query
+          required: true
+          schema:
+            type: string
+          description: The name of the type being listed (transferOperations)
+        - name: filter
+          in: query
+          required: true
+          schema:
+            type: string
+          description: JSON filter for operations
+        - name: pageSize
+          in: query
+          schema:
+            type: integer
+        - name: pageToken
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListOperationsResponse'
+  /projects/{projectId}/agentPools:
+    get:
+      operationId: listAgentPools
+      summary: List agent pools
+      description: Lists agent pools for a project.
+      tags:
+        - AgentPools
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListAgentPoolsResponse'
+    post:
+      operationId: createAgentPool
+      summary: Create an agent pool
+      description: Creates an agent pool for on-premises transfers.
+      tags:
+        - AgentPools
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: agentPoolId
+          in: query
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AgentPool'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AgentPool'
+components:
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://accounts.google.com/o/oauth2/auth
+          tokenUrl: https://oauth2.googleapis.com/token
+          scopes:
+            https://www.googleapis.com/auth/cloud-platform: Full access to Google Cloud resources
+  schemas:
+    TransferJob:
+      type: object
+      description: A description of the transfer job configuration.
+      properties:
+        name:
+          type: string
+          description: A unique name chosen by the user or auto-generated.
+        description:
+          type: string
+          description: A description provided by the user.
+        projectId:
+          type: string
+          description: The ID of the Google Cloud project that owns the job.
+        transferSpec:
+          $ref: '#/components/schemas/TransferSpec'
+        schedule:
+          $ref: '#/components/schemas/Schedule'
+        status:
+          type: string
+          enum:
+            - STATUS_UNSPECIFIED
+            - ENABLED
+            - DISABLED
+            - DELETED
+        creationTime:
+          type: string
+          format: date-time
+        lastModificationTime:
+          type: string
+          format: date-time
+    TransferSpec:
+      type: object
+      description: Configuration for running a transfer.
+      properties:
+        gcsDataSink:
+          $ref: '#/components/schemas/GcsData'
+        gcsDataSource:
+          $ref: '#/components/schemas/GcsData'
+        awsS3DataSource:
+          $ref: '#/components/schemas/AwsS3Data'
+        azureBlobStorageDataSource:
+          $ref: '#/components/schemas/AzureBlobStorageData'
+        objectConditions:
+          type: object
+          description: Conditions to filter objects for transfer.
+          properties:
+            includePrefixes:
+              type: array
+              items:
+                type: string
+            excludePrefixes:
+              type: array
+              items:
+                type: string
+            minTimeElapsedSinceLastModification:
+              type: string
+            maxTimeElapsedSinceLastModification:
+              type: string
+        transferOptions:
+          type: object
+          description: Transfer options to control behavior.
+          properties:
+            overwriteObjectsAlreadyExistingInSink:
+              type: boolean
+            deleteObjectsFromSourceAfterTransfer:
+              type: boolean
+            deleteObjectsUniqueInSink:
+              type: boolean
+    GcsData:
+      type: object
+      description: Google Cloud Storage bucket reference.
+      properties:
+        bucketName:
+          type: string
+          description: Cloud Storage bucket name.
+        path:
+          type: string
+          description: Root path to transfer objects.
+    AwsS3Data:
+      type: object
+      description: Amazon S3 bucket reference.
+      properties:
+        bucketName:
+          type: string
+          description: S3 bucket name.
+        awsAccessKey:
+          type: object
+          properties:
+            accessKeyId:
+              type: string
+            secretAccessKey:
+              type: string
+        path:
+          type: string
+        roleArn:
+          type: string
+    AzureBlobStorageData:
+      type: object
+      description: Azure Blob Storage container reference.
+      properties:
+        storageAccount:
+          type: string
+        azureCredentials:
+          type: object
+          properties:
+            sasToken:
+              type: string
+        container:
+          type: string
+        path:
+          type: string
+    Schedule:
+      type: object
+      description: Schedule for a transfer job.
+      properties:
+        scheduleStartDate:
+          $ref: '#/components/schemas/Date'
+        scheduleEndDate:
+          $ref: '#/components/schemas/Date'
+        startTimeOfDay:
+          type: object
+          properties:
+            hours:
+              type: integer
+            minutes:
+              type: integer
+            seconds:
+              type: integer
+            nanos:
+              type: integer
+        repeatInterval:
+          type: string
+          description: Interval between transfer runs in seconds format (e.g., 86400s).
+    Date:
+      type: object
+      description: A date in the format YYYY-MM-DD.
+      properties:
+        year:
+          type: integer
+        month:
+          type: integer
+        day:
+          type: integer
+    AgentPool:
+      type: object
+      description: An agent pool for on-premises transfer operations.
+      properties:
+        name:
+          type: string
+        displayName:
+          type: string
+        state:
+          type: string
+          enum:
+            - STATE_UNSPECIFIED
+            - CREATING
+            - CREATED
+            - DELETING
+        bandwidthLimit:
+          type: object
+          properties:
+            limitMbps:
+              type: integer
+              description: Bandwidth rate limit in megabytes per second.
+    Operation:
+      type: object
+      description: A long-running operation.
+      properties:
+        name:
+          type: string
+        done:
+          type: boolean
+        metadata:
+          type: object
+    ListTransferJobsResponse:
+      type: object
+      properties:
+        transferJobs:
+          type: array
+          items:
+            $ref: '#/components/schemas/TransferJob'
+        nextPageToken:
+          type: string
+    ListOperationsResponse:
+      type: object
+      properties:
+        operations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Operation'
+        nextPageToken:
+          type: string
+    ListAgentPoolsResponse:
+      type: object
+      properties:
+        agentPools:
+          type: array
+          items:
+            $ref: '#/components/schemas/AgentPool'
+        nextPageToken:
+          type: string

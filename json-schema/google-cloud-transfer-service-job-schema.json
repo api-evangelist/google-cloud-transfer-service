@@ -1,0 +1,177 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cloud.google.com/schemas/storagetransfer/transfer-job.json",
+  "title": "Google Cloud Storage Transfer Job",
+  "description": "Schema for a Storage Transfer Service transfer job configuration, used to define data transfer operations between storage systems.",
+  "type": "object",
+  "required": ["projectId", "transferSpec"],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "A unique name for the transfer job, auto-generated if not provided"
+    },
+    "description": {
+      "type": "string",
+      "description": "A description provided by the user for the transfer job"
+    },
+    "projectId": {
+      "type": "string",
+      "description": "The ID of the Google Cloud project that owns the job"
+    },
+    "transferSpec": {
+      "$ref": "#/$defs/TransferSpec",
+      "description": "Transfer specification describing source and destination"
+    },
+    "schedule": {
+      "$ref": "#/$defs/Schedule",
+      "description": "Schedule for the transfer job"
+    },
+    "status": {
+      "type": "string",
+      "description": "Status of the transfer job",
+      "enum": ["STATUS_UNSPECIFIED", "ENABLED", "DISABLED", "DELETED"]
+    },
+    "creationTime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the job was created"
+    },
+    "lastModificationTime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the job was last modified"
+    }
+  },
+  "$defs": {
+    "TransferSpec": {
+      "type": "object",
+      "description": "Configuration for running a transfer between source and destination",
+      "properties": {
+        "gcsDataSink": {
+          "$ref": "#/$defs/GcsData",
+          "description": "Google Cloud Storage destination bucket"
+        },
+        "gcsDataSource": {
+          "$ref": "#/$defs/GcsData",
+          "description": "Google Cloud Storage source bucket"
+        },
+        "awsS3DataSource": {
+          "$ref": "#/$defs/AwsS3Data",
+          "description": "Amazon S3 source bucket"
+        },
+        "azureBlobStorageDataSource": {
+          "$ref": "#/$defs/AzureBlobStorageData",
+          "description": "Azure Blob Storage source container"
+        },
+        "objectConditions": {
+          "type": "object",
+          "description": "Conditions to determine which objects are transferred",
+          "properties": {
+            "includePrefixes": {
+              "type": "array",
+              "items": { "type": "string" }
+            },
+            "excludePrefixes": {
+              "type": "array",
+              "items": { "type": "string" }
+            }
+          }
+        },
+        "transferOptions": {
+          "type": "object",
+          "description": "Options controlling transfer behavior",
+          "properties": {
+            "overwriteObjectsAlreadyExistingInSink": {
+              "type": "boolean"
+            },
+            "deleteObjectsFromSourceAfterTransfer": {
+              "type": "boolean"
+            },
+            "deleteObjectsUniqueInSink": {
+              "type": "boolean"
+            }
+          }
+        }
+      }
+    },
+    "GcsData": {
+      "type": "object",
+      "description": "Google Cloud Storage bucket reference",
+      "required": ["bucketName"],
+      "properties": {
+        "bucketName": {
+          "type": "string",
+          "description": "Cloud Storage bucket name"
+        },
+        "path": {
+          "type": "string",
+          "description": "Root path to transfer objects"
+        }
+      }
+    },
+    "AwsS3Data": {
+      "type": "object",
+      "description": "Amazon S3 bucket reference",
+      "required": ["bucketName"],
+      "properties": {
+        "bucketName": {
+          "type": "string",
+          "description": "S3 bucket name"
+        },
+        "path": {
+          "type": "string",
+          "description": "Root path within the bucket"
+        },
+        "roleArn": {
+          "type": "string",
+          "description": "AWS IAM role ARN for cross-account access"
+        }
+      }
+    },
+    "AzureBlobStorageData": {
+      "type": "object",
+      "description": "Azure Blob Storage container reference",
+      "required": ["storageAccount", "container"],
+      "properties": {
+        "storageAccount": {
+          "type": "string",
+          "description": "Azure storage account name"
+        },
+        "container": {
+          "type": "string",
+          "description": "Azure Blob Storage container name"
+        },
+        "path": {
+          "type": "string",
+          "description": "Root path within the container"
+        }
+      }
+    },
+    "Schedule": {
+      "type": "object",
+      "description": "Transfer schedule configuration",
+      "properties": {
+        "scheduleStartDate": {
+          "type": "object",
+          "properties": {
+            "year": { "type": "integer" },
+            "month": { "type": "integer" },
+            "day": { "type": "integer" }
+          }
+        },
+        "scheduleEndDate": {
+          "type": "object",
+          "properties": {
+            "year": { "type": "integer" },
+            "month": { "type": "integer" },
+            "day": { "type": "integer" }
+          }
+        },
+        "repeatInterval": {
+          "type": "string",
+          "description": "Interval between runs in seconds format (e.g., 86400s)"
+        }
+      }
+    }
+  }
+}

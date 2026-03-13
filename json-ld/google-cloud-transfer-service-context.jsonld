@@ -1,0 +1,74 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "sts": "https://cloud.google.com/storage-transfer/ns/",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dcterms": "http://purl.org/dc/terms/",
+
+    "TransferJob": {
+      "@id": "sts:TransferJob",
+      "@context": {
+        "name": "schema:name",
+        "description": "schema:description",
+        "projectId": "sts:projectId",
+        "status": "sts:status",
+        "transferSpec": "sts:transferSpec",
+        "schedule": "sts:schedule",
+        "creationTime": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        },
+        "lastModificationTime": {
+          "@id": "dcterms:modified",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "TransferOperation": {
+      "@id": "sts:TransferOperation",
+      "@context": {
+        "name": "schema:name",
+        "projectId": "sts:projectId",
+        "status": "sts:operationStatus",
+        "startTime": {
+          "@id": "sts:startTime",
+          "@type": "xsd:dateTime"
+        },
+        "endTime": {
+          "@id": "sts:endTime",
+          "@type": "xsd:dateTime"
+        },
+        "counters": "sts:transferCounters"
+      }
+    },
+
+    "AgentPool": {
+      "@id": "sts:AgentPool",
+      "@context": {
+        "name": "schema:name",
+        "displayName": "schema:alternateName",
+        "state": "sts:agentPoolState",
+        "bandwidthLimit": "sts:bandwidthLimit"
+      }
+    },
+
+    "GcsData": {
+      "@id": "sts:GcsData",
+      "@context": {
+        "bucketName": "sts:bucketName",
+        "path": "sts:path"
+      }
+    },
+
+    "AwsS3Data": {
+      "@id": "sts:AwsS3Data",
+      "@context": {
+        "bucketName": "sts:bucketName",
+        "path": "sts:path",
+        "roleArn": "sts:roleArn"
+      }
+    }
+  }
+}
