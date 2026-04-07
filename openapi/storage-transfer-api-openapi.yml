@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Google Storage Transfer API
+  title: Google Cloud Transfer Service Google Storage Transfer API
   description: >-
     The Storage Transfer API provides programmatic access to Google Cloud Storage
     Transfer Service for creating, managing, and monitoring data transfer jobs
@@ -31,7 +31,7 @@ paths:
   /transferJobs:
     get:
       operationId: listTransferJobs
-      summary: List transfer jobs
+      summary: Google Cloud Transfer Service List transfer jobs
       description: Lists transfer jobs with optional filtering.
       tags:
         - TransferJobs
@@ -62,7 +62,7 @@ paths:
                 $ref: '#/components/schemas/ListTransferJobsResponse'
     post:
       operationId: createTransferJob
-      summary: Create a transfer job
+      summary: Google Cloud Transfer Service Create a transfer job
       description: Creates a transfer job that runs periodically.
       tags:
         - TransferJobs
@@ -82,7 +82,7 @@ paths:
   /transferJobs/{jobName}:
     get:
       operationId: getTransferJob
-      summary: Get a transfer job
+      summary: Google Cloud Transfer Service Get a transfer job
       description: Gets a transfer job.
       tags:
         - TransferJobs
@@ -106,7 +106,7 @@ paths:
                 $ref: '#/components/schemas/TransferJob'
     patch:
       operationId: updateTransferJob
-      summary: Update a transfer job
+      summary: Google Cloud Transfer Service Update a transfer job
       description: Updates a transfer job configuration.
       tags:
         - TransferJobs
@@ -139,7 +139,7 @@ paths:
   /transferJobs/{jobName}:run:
     post:
       operationId: runTransferJob
-      summary: Run a transfer job
+      summary: Google Cloud Transfer Service Run a transfer job
       description: Starts a new operation for the specified transfer job.
       tags:
         - TransferJobs
@@ -168,7 +168,7 @@ paths:
   /transferOperations:
     get:
       operationId: listTransferOperations
-      summary: List transfer operations
+      summary: Google Cloud Transfer Service List transfer operations
       description: Lists transfer operations with optional filtering.
       tags:
         - TransferOperations
@@ -203,7 +203,7 @@ paths:
   /projects/{projectId}/agentPools:
     get:
       operationId: listAgentPools
-      summary: List agent pools
+      summary: Google Cloud Transfer Service List agent pools
       description: Lists agent pools for a project.
       tags:
         - AgentPools
@@ -222,7 +222,7 @@ paths:
                 $ref: '#/components/schemas/ListAgentPoolsResponse'
     post:
       operationId: createAgentPool
-      summary: Create an agent pool
+      summary: Google Cloud Transfer Service Create an agent pool
       description: Creates an agent pool for on-premises transfers.
       tags:
         - AgentPools
