@@ -19,12 +19,12 @@ servers:
   - url: https://storagetransfer.googleapis.com/v1
     description: Production Server
 tags:
+  - name: AgentPools
+    description: Operations for managing on-premises transfer agent pools
   - name: TransferJobs
     description: Operations for managing transfer jobs
   - name: TransferOperations
     description: Operations for monitoring transfer operations
-  - name: AgentPools
-    description: Operations for managing on-premises transfer agent pools
 security:
   - oauth2: []
 paths:
