@@ -46,7 +46,7 @@ common:
     url: https://cloud.google.com/storage-transfer/docs/create-transfers
   - type: Pricing
     url: https://cloud.google.com/storage-transfer/pricing
-  - type: JSON-LD
+  - type: JSONLD
     url: json-ld/google-cloud-transfer-service-context.jsonld
   - type: Integrations
     url: https://cloud.google.com/marketplace
