@@ -1,0 +1,99 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Google Cloud Transfer Service Google Storage Transfer API — TransferOperations
+  description: 'Google Cloud Transfer Service Google Storage Transfer API — TransferOperations. 1 operations. Lead operation:
+    Google Cloud Transfer Service List transfer operations. Self-contained Naftiko capability covering one Google Cloud Transfer
+    Service business surface.'
+  tags:
+  - Google Cloud Transfer Service
+  - TransferOperations
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    GOOGLE_CLOUD_TRANSFER_SERVICE_API_KEY: GOOGLE_CLOUD_TRANSFER_SERVICE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: storage-transfer-transferoperations
+    baseUri: https://storagetransfer.googleapis.com/v1
+    description: Google Cloud Transfer Service Google Storage Transfer API — TransferOperations business capability. Self-contained,
+      no shared references.
+    resources:
+    - name: transferOperations
+      path: /transferOperations
+      operations:
+      - name: listtransferoperations
+        method: GET
+        description: Google Cloud Transfer Service List transfer operations
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: query
+          type: string
+          description: The name of the type being listed (transferOperations)
+          required: true
+        - name: filter
+          in: query
+          type: string
+          description: JSON filter for operations
+          required: true
+        - name: pageSize
+          in: query
+          type: integer
+        - name: pageToken
+          in: query
+          type: string
+    authentication:
+      type: bearer
+      token: '{{env.GOOGLE_CLOUD_TRANSFER_SERVICE_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: storage-transfer-transferoperations-rest
+    port: 8080
+    description: REST adapter for Google Cloud Transfer Service Google Storage Transfer API — TransferOperations. One Spectral-compliant
+      resource per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/transferoperations
+      name: transferoperations
+      description: REST surface for transferOperations.
+      operations:
+      - method: GET
+        name: listtransferoperations
+        description: Google Cloud Transfer Service List transfer operations
+        call: storage-transfer-transferoperations.listtransferoperations
+        with:
+          name: rest.name
+          filter: rest.filter
+          pageSize: rest.pageSize
+          pageToken: rest.pageToken
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: storage-transfer-transferoperations-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Google Cloud Transfer Service Google Storage Transfer API — TransferOperations. One tool
+      per consumed operation, routed inline through this capability's consumes block.
+    tools:
+    - name: google-cloud-transfer-service-list
+      description: Google Cloud Transfer Service List transfer operations
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: storage-transfer-transferoperations.listtransferoperations
+      with:
+        name: tools.name
+        filter: tools.filter
+        pageSize: tools.pageSize
+        pageToken: tools.pageToken
+      outputParameters:
+      - type: object
+        mapping: $.

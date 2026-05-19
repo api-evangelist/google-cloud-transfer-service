@@ -1,0 +1,265 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Google Cloud Transfer Service Google Storage Transfer API — TransferJobs
+  description: 'Google Cloud Transfer Service Google Storage Transfer API — TransferJobs. 5 operations. Lead operation: Google
+    Cloud Transfer Service List transfer jobs. Self-contained Naftiko capability covering one Google Cloud Transfer Service
+    business surface.'
+  tags:
+  - Google Cloud Transfer Service
+  - TransferJobs
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    GOOGLE_CLOUD_TRANSFER_SERVICE_API_KEY: GOOGLE_CLOUD_TRANSFER_SERVICE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: storage-transfer-transferjobs
+    baseUri: https://storagetransfer.googleapis.com/v1
+    description: Google Cloud Transfer Service Google Storage Transfer API — TransferJobs business capability. Self-contained,
+      no shared references.
+    resources:
+    - name: transferJobs
+      path: /transferJobs
+      operations:
+      - name: listtransferjobs
+        method: GET
+        description: Google Cloud Transfer Service List transfer jobs
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: filter
+          in: query
+          type: string
+          description: JSON filter for transfer jobs. Must include projectId field.
+          required: true
+        - name: pageSize
+          in: query
+          type: integer
+          description: Maximum number of results to return
+        - name: pageToken
+          in: query
+          type: string
+          description: Page token for pagination
+      - name: createtransferjob
+        method: POST
+        description: Google Cloud Transfer Service Create a transfer job
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: transferJobs-jobName
+      path: /transferJobs/{jobName}
+      operations:
+      - name: gettransferjob
+        method: GET
+        description: Google Cloud Transfer Service Get a transfer job
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: jobName
+          in: path
+          type: string
+          required: true
+        - name: projectId
+          in: query
+          type: string
+          required: true
+      - name: updatetransferjob
+        method: PATCH
+        description: Google Cloud Transfer Service Update a transfer job
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: jobName
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: transferJobs-jobName}:run
+      path: /transferJobs/{jobName}:run
+      operations:
+      - name: runtransferjob
+        method: POST
+        description: Google Cloud Transfer Service Run a transfer job
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: jobName
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.GOOGLE_CLOUD_TRANSFER_SERVICE_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: storage-transfer-transferjobs-rest
+    port: 8080
+    description: REST adapter for Google Cloud Transfer Service Google Storage Transfer API — TransferJobs. One Spectral-compliant
+      resource per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/transferjobs
+      name: transferjobs
+      description: REST surface for transferJobs.
+      operations:
+      - method: GET
+        name: listtransferjobs
+        description: Google Cloud Transfer Service List transfer jobs
+        call: storage-transfer-transferjobs.listtransferjobs
+        with:
+          filter: rest.filter
+          pageSize: rest.pageSize
+          pageToken: rest.pageToken
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createtransferjob
+        description: Google Cloud Transfer Service Create a transfer job
+        call: storage-transfer-transferjobs.createtransferjob
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/transferjobs/{jobname}
+      name: transferjobs-jobname
+      description: REST surface for transferJobs-jobName.
+      operations:
+      - method: GET
+        name: gettransferjob
+        description: Google Cloud Transfer Service Get a transfer job
+        call: storage-transfer-transferjobs.gettransferjob
+        with:
+          jobName: rest.jobName
+          projectId: rest.projectId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: updatetransferjob
+        description: Google Cloud Transfer Service Update a transfer job
+        call: storage-transfer-transferjobs.updatetransferjob
+        with:
+          jobName: rest.jobName
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/transferjobs/jobname-run
+      name: transferjobs-jobname-run
+      description: REST surface for transferJobs-jobName}:run.
+      operations:
+      - method: POST
+        name: runtransferjob
+        description: Google Cloud Transfer Service Run a transfer job
+        call: storage-transfer-transferjobs.runtransferjob
+        with:
+          jobName: rest.jobName
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: storage-transfer-transferjobs-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Google Cloud Transfer Service Google Storage Transfer API — TransferJobs. One tool per consumed
+      operation, routed inline through this capability's consumes block.
+    tools:
+    - name: google-cloud-transfer-service-list
+      description: Google Cloud Transfer Service List transfer jobs
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: storage-transfer-transferjobs.listtransferjobs
+      with:
+        filter: tools.filter
+        pageSize: tools.pageSize
+        pageToken: tools.pageToken
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: google-cloud-transfer-service-create
+      description: Google Cloud Transfer Service Create a transfer job
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: storage-transfer-transferjobs.createtransferjob
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: google-cloud-transfer-service-get
+      description: Google Cloud Transfer Service Get a transfer job
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: storage-transfer-transferjobs.gettransferjob
+      with:
+        jobName: tools.jobName
+        projectId: tools.projectId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: google-cloud-transfer-service-update
+      description: Google Cloud Transfer Service Update a transfer job
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: storage-transfer-transferjobs.updatetransferjob
+      with:
+        jobName: tools.jobName
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: google-cloud-transfer-service-run
+      description: Google Cloud Transfer Service Run a transfer job
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: storage-transfer-transferjobs.runtransferjob
+      with:
+        jobName: tools.jobName
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
