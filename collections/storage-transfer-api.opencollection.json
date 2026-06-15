@@ -1,0 +1,239 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Google Cloud Transfer Service Google Storage Transfer API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://accounts.google.com/o/oauth2/auth",
+      "accessTokenUrl": "https://oauth2.googleapis.com/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "TransferJobs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Google Cloud Transfer Service List transfer jobs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://storagetransfer.googleapis.com/v1/transferJobs",
+            "params": [
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "JSON filter for transfer jobs. Must include projectId field."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return"
+              },
+              {
+                "name": "pageToken",
+                "value": "",
+                "type": "query",
+                "description": "Page token for pagination"
+              }
+            ]
+          },
+          "docs": "Lists transfer jobs with optional filtering."
+        },
+        {
+          "info": {
+            "name": "Google Cloud Transfer Service Create a transfer job",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://storagetransfer.googleapis.com/v1/transferJobs",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a transfer job that runs periodically."
+        },
+        {
+          "info": {
+            "name": "Google Cloud Transfer Service Get a transfer job",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://storagetransfer.googleapis.com/v1/transferJobs/:jobName",
+            "params": [
+              {
+                "name": "jobName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Gets a transfer job."
+        },
+        {
+          "info": {
+            "name": "Google Cloud Transfer Service Update a transfer job",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://storagetransfer.googleapis.com/v1/transferJobs/:jobName",
+            "params": [
+              {
+                "name": "jobName",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a transfer job configuration."
+        },
+        {
+          "info": {
+            "name": "Google Cloud Transfer Service Run a transfer job",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://storagetransfer.googleapis.com/v1/transferJobs/:jobName:run",
+            "params": [
+              {
+                "name": "jobName",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Starts a new operation for the specified transfer job."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "TransferOperations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Google Cloud Transfer Service List transfer operations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://storagetransfer.googleapis.com/v1/transferOperations",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "The name of the type being listed (transferOperations)"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "JSON filter for operations"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pageToken",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Lists transfer operations with optional filtering."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "AgentPools",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Google Cloud Transfer Service List agent pools",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://storagetransfer.googleapis.com/v1/projects/:projectId/agentPools",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Lists agent pools for a project."
+        },
+        {
+          "info": {
+            "name": "Google Cloud Transfer Service Create an agent pool",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://storagetransfer.googleapis.com/v1/projects/:projectId/agentPools",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "agentPoolId",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates an agent pool for on-premises transfers."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
