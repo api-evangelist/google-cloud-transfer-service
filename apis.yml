@@ -38,6 +38,12 @@ apis:
       - type: JSONSchema
         url: json-schema/google-cloud-transfer-service-job-schema.json
 common:
+  - type: VulnerabilityDisclosure
+    url: security/google-cloud-transfer-service-vulnerability-disclosure.yml
+  - type: DomainSecurity
+    url: security/google-cloud-transfer-service-domain-security.yml
+  - type: Authentication
+    url: authentication/google-cloud-transfer-service-authentication.yml
   - type: OAuthScopes
     url: scopes/google-cloud-transfer-service-scopes.yml
   - type: GitHubOrganization
