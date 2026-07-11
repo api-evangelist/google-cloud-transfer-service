@@ -38,6 +38,8 @@ apis:
       - type: JSONSchema
         url: json-schema/google-cloud-transfer-service-job-schema.json
 common:
+  - type: OAuthScopes
+    url: scopes/google-cloud-transfer-service-scopes.yml
   - type: GitHubOrganization
     url: https://github.com/googleapis
   - type: GettingStarted
@@ -48,6 +50,8 @@ common:
     url: json-ld/google-cloud-transfer-service-context.jsonld
   - type: Integrations
     url: https://cloud.google.com/marketplace
+  - url: https://docs.cloud.google.com/feeds/storagetransfer-release-notes.xml
+    type: Blog
 integrations:
   - name: Become a Partner
 maintainers:
