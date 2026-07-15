@@ -38,6 +38,8 @@ apis:
       - type: JSONSchema
         url: json-schema/google-cloud-transfer-service-job-schema.json
 common:
+  - type: AgenticAccess
+    url: agentic-access/google-cloud-transfer-service-agentic-access.yml
   - type: VulnerabilityDisclosure
     url: security/google-cloud-transfer-service-vulnerability-disclosure.yml
   - type: DomainSecurity
