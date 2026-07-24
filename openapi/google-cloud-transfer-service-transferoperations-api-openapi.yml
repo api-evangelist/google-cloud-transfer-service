@@ -1,0 +1,86 @@
+openapi: 3.1.0
+info:
+  title: Google Cloud Transfer Service Google Storage Transfer AgentPools TransferOperations API
+  description: The Storage Transfer API provides programmatic access to Google Cloud Storage Transfer Service for creating, managing, and monitoring data transfer jobs between cloud storage systems and on-premises storage. It supports scheduling transfers, configuring transfer options, managing agent pools, and monitoring transfer operations.
+  version: v1
+  contact:
+    name: Google Cloud Support
+    url: https://cloud.google.com/storage-transfer/docs
+  termsOfService: https://cloud.google.com/terms
+servers:
+- url: https://storagetransfer.googleapis.com/v1
+  description: Production Server
+security:
+- oauth2: []
+tags:
+- name: TransferOperations
+  description: Operations for monitoring transfer operations
+paths:
+  /transferOperations:
+    get:
+      operationId: listTransferOperations
+      summary: Google Cloud Transfer Service List transfer operations
+      description: Lists transfer operations with optional filtering.
+      tags:
+      - TransferOperations
+      parameters:
+      - name: name
+        in: query
+        required: true
+        schema:
+          type: string
+        description: The name of the type being listed (transferOperations)
+      - name: filter
+        in: query
+        required: true
+        schema:
+          type: string
+        description: JSON filter for operations
+      - name: pageSize
+        in: query
+        schema:
+          type: integer
+      - name: pageToken
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListOperationsResponse'
+components:
+  schemas:
+    Operation:
+      type: object
+      description: A long-running operation.
+      properties:
+        name:
+          type: string
+        done:
+          type: boolean
+        metadata:
+          type: object
+    ListOperationsResponse:
+      type: object
+      properties:
+        operations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Operation'
+        nextPageToken:
+          type: string
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://accounts.google.com/o/oauth2/auth
+          tokenUrl: https://oauth2.googleapis.com/token
+          scopes:
+            https://www.googleapis.com/auth/cloud-platform: Full access to Google Cloud resources
+externalDocs:
+  description: Storage Transfer API Documentation
+  url: https://cloud.google.com/storage-transfer/docs/reference/rest

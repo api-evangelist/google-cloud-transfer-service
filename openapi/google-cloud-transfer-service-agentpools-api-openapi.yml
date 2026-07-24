@@ -1,0 +1,112 @@
+openapi: 3.1.0
+info:
+  title: Google Cloud Transfer Service Google Storage Transfer AgentPools API
+  description: The Storage Transfer API provides programmatic access to Google Cloud Storage Transfer Service for creating, managing, and monitoring data transfer jobs between cloud storage systems and on-premises storage. It supports scheduling transfers, configuring transfer options, managing agent pools, and monitoring transfer operations.
+  version: v1
+  contact:
+    name: Google Cloud Support
+    url: https://cloud.google.com/storage-transfer/docs
+  termsOfService: https://cloud.google.com/terms
+servers:
+- url: https://storagetransfer.googleapis.com/v1
+  description: Production Server
+security:
+- oauth2: []
+tags:
+- name: AgentPools
+  description: Operations for managing on-premises transfer agent pools
+paths:
+  /projects/{projectId}/agentPools:
+    get:
+      operationId: listAgentPools
+      summary: Google Cloud Transfer Service List agent pools
+      description: Lists agent pools for a project.
+      tags:
+      - AgentPools
+      parameters:
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListAgentPoolsResponse'
+    post:
+      operationId: createAgentPool
+      summary: Google Cloud Transfer Service Create an agent pool
+      description: Creates an agent pool for on-premises transfers.
+      tags:
+      - AgentPools
+      parameters:
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: agentPoolId
+        in: query
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AgentPool'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AgentPool'
+components:
+  schemas:
+    ListAgentPoolsResponse:
+      type: object
+      properties:
+        agentPools:
+          type: array
+          items:
+            $ref: '#/components/schemas/AgentPool'
+        nextPageToken:
+          type: string
+    AgentPool:
+      type: object
+      description: An agent pool for on-premises transfer operations.
+      properties:
+        name:
+          type: string
+        displayName:
+          type: string
+        state:
+          type: string
+          enum:
+          - STATE_UNSPECIFIED
+          - CREATING
+          - CREATED
+          - DELETING
+        bandwidthLimit:
+          type: object
+          properties:
+            limitMbps:
+              type: integer
+              description: Bandwidth rate limit in megabytes per second.
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://accounts.google.com/o/oauth2/auth
+          tokenUrl: https://oauth2.googleapis.com/token
+          scopes:
+            https://www.googleapis.com/auth/cloud-platform: Full access to Google Cloud resources
+externalDocs:
+  description: Storage Transfer API Documentation
+  url: https://cloud.google.com/storage-transfer/docs/reference/rest
