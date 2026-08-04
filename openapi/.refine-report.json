@@ -1,0 +1,18 @@
+{
+  "provider": "google-cloud-transfer-service",
+  "sources": [
+    "google-cloud-transfer-service-agentpools-api-openapi.yml",
+    "google-cloud-transfer-service-transferjobs-api-openapi.yml",
+    "google-cloud-transfer-service-transferoperations-api-openapi.yml"
+  ],
+  "outputs": [
+    "google-cloud-transfer-service-agentpools-api-openapi.yml",
+    "google-cloud-transfer-service-transferjobs-api-openapi.yml",
+    "google-cloud-transfer-service-transferoperations-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
