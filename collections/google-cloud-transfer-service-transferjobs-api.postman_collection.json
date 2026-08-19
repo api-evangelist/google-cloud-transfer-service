@@ -1,0 +1,598 @@
+{
+  "item": [
+    {
+      "id": "11cb8902-a49f-4ea4-8700-13a9dc20d335",
+      "name": "TransferJobs",
+      "description": {
+        "content": "Operations for managing transfer jobs",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "81f6e099-4f26-4787-a7ac-17334bff4bca",
+          "name": "Google Cloud Transfer Service List transfer jobs",
+          "request": {
+            "name": "Google Cloud Transfer Service List transfer jobs",
+            "description": {
+              "content": "Lists transfer jobs with optional filtering.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "transferJobs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>",
+                  "description": "(Required) JSON filter for transfer jobs. Must include projectId field."
+                },
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "<integer>",
+                  "description": "Maximum number of results to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "pageToken",
+                  "value": "<string>",
+                  "description": "Page token for pagination"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "48499da6-fcf0-47f7-b61b-8eb1c86e7e7a",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transferJobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "pageToken",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"transferJobs\": [\n    {\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"projectId\": \"string\",\n      \"transferSpec\": {\n        \"gcsDataSink\": {\n          \"bucketName\": \"string\",\n          \"path\": \"string\"\n        },\n        \"gcsDataSource\": {\n          \"bucketName\": \"string\",\n          \"path\": \"string\"\n        },\n        \"awsS3DataSource\": {\n          \"bucketName\": \"string\",\n          \"awsAccessKey\": {\n            \"accessKeyId\": \"string\",\n            \"secretAccessKey\": \"string\"\n          },\n          \"path\": \"string\",\n          \"roleArn\": \"string\"\n        },\n        \"azureBlobStorageDataSource\": {\n          \"storageAccount\": \"string\",\n          \"azureCredentials\": {\n            \"sasToken\": \"string\"\n          },\n          \"container\": \"string\",\n          \"path\": \"string\"\n        },\n        \"objectConditions\": {\n          \"includePrefixes\": [\n            \"string\",\n            \"string\"\n          ],\n          \"excludePrefixes\": [\n            \"string\",\n            \"string\"\n          ],\n          \"minTimeElapsedSinceLastModification\": \"string\",\n          \"maxTimeElapsedSinceLastModification\": \"string\"\n        },\n        \"transferOptions\": {\n          \"overwriteObjectsAlreadyExistingInSink\": true,\n          \"deleteObjectsFromSourceAfterTransfer\": false,\n          \"deleteObjectsUniqueInSink\": false\n        }\n      },\n      \"schedule\": {\n        \"scheduleStartDate\": {\n          \"year\": 5257,\n          \"month\": 9981,\n          \"day\": 3154\n        },\n        \"scheduleEndDate\": {\n          \"year\": 8492,\n          \"month\": 1014,\n          \"day\": 1840\n        },\n        \"startTimeOfDay\": {\n          \"hours\": 8561,\n          \"minutes\": 4824,\n          \"seconds\": 2323,\n          \"nanos\": 7456\n        },\n        \"repeatInterval\": \"string\"\n      },\n      \"status\": \"DELETED\",\n      \"creationTime\": \"2014-12-09T10:08:09.040Z\",\n      \"lastModificationTime\": \"1989-03-11T15:43:49.994Z\"\n    },\n    {\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"projectId\": \"string\",\n      \"transferSpec\": {\n        \"gcsDataSink\": {\n          \"bucketName\": \"string\",\n          \"path\": \"string\"\n        },\n        \"gcsDataSource\": {\n          \"bucketName\": \"string\",\n          \"path\": \"string\"\n        },\n        \"awsS3DataSource\": {\n          \"bucketName\": \"string\",\n          \"awsAccessKey\": {\n            \"accessKeyId\": \"string\",\n            \"secretAccessKey\": \"string\"\n          },\n          \"path\": \"string\",\n          \"roleArn\": \"string\"\n        },\n        \"azureBlobStorageDataSource\": {\n          \"storageAccount\": \"string\",\n          \"azureCredentials\": {\n            \"sasToken\": \"string\"\n          },\n          \"container\": \"string\",\n          \"path\": \"string\"\n        },\n        \"objectConditions\": {\n          \"includePrefixes\": [\n            \"string\",\n            \"string\"\n          ],\n          \"excludePrefixes\": [\n            \"string\",\n            \"string\"\n          ],\n          \"minTimeElapsedSinceLastModification\": \"string\",\n          \"maxTimeElapsedSinceLastModification\": \"string\"\n        },\n        \"transferOptions\": {\n          \"overwriteObjectsAlreadyExistingInSink\": true,\n          \"deleteObjectsFromSourceAfterTransfer\": true,\n          \"deleteObjectsUniqueInSink\": true\n        }\n      },\n      \"schedule\": {\n        \"scheduleStartDate\": {\n          \"year\": 608,\n          \"month\": 9642,\n          \"day\": 3111\n        },\n        \"scheduleEndDate\": {\n          \"year\": 6919,\n          \"month\": 5233,\n          \"day\": 9430\n        },\n        \"startTimeOfDay\": {\n          \"hours\": 9864,\n          \"minutes\": 1377,\n          \"seconds\": 3029,\n          \"nanos\": 8505\n        },\n        \"repeatInterval\": \"string\"\n      },\n      \"status\": \"DELETED\",\n      \"creationTime\": \"1983-12-30T15:24:13.215Z\",\n      \"lastModificationTime\": \"1976-09-23T08:29:28.492Z\"\n    }\n  ],\n  \"nextPageToken\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3993c8be-f11d-463d-a67b-dd6c6f16214b",
+          "name": "Google Cloud Transfer Service Create a transfer job",
+          "request": {
+            "name": "Google Cloud Transfer Service Create a transfer job",
+            "description": {
+              "content": "Creates a transfer job that runs periodically.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "transferJobs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"projectId\": \"<string>\",\n  \"transferSpec\": {\n    \"gcsDataSink\": {\n      \"bucketName\": \"<string>\",\n      \"path\": \"<string>\"\n    },\n    \"gcsDataSource\": {\n      \"bucketName\": \"<string>\",\n      \"path\": \"<string>\"\n    },\n    \"awsS3DataSource\": {\n      \"bucketName\": \"<string>\",\n      \"awsAccessKey\": {\n        \"accessKeyId\": \"<string>\",\n        \"secretAccessKey\": \"<string>\"\n      },\n      \"path\": \"<string>\",\n      \"roleArn\": \"<string>\"\n    },\n    \"azureBlobStorageDataSource\": {\n      \"storageAccount\": \"<string>\",\n      \"azureCredentials\": {\n        \"sasToken\": \"<string>\"\n      },\n      \"container\": \"<string>\",\n      \"path\": \"<string>\"\n    },\n    \"objectConditions\": {\n      \"includePrefixes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"excludePrefixes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"minTimeElapsedSinceLastModification\": \"<string>\",\n      \"maxTimeElapsedSinceLastModification\": \"<string>\"\n    },\n    \"transferOptions\": {\n      \"overwriteObjectsAlreadyExistingInSink\": \"<boolean>\",\n      \"deleteObjectsFromSourceAfterTransfer\": \"<boolean>\",\n      \"deleteObjectsUniqueInSink\": \"<boolean>\"\n    }\n  },\n  \"schedule\": {\n    \"scheduleStartDate\": {\n      \"year\": \"<integer>\",\n      \"month\": \"<integer>\",\n      \"day\": \"<integer>\"\n    },\n    \"scheduleEndDate\": {\n      \"year\": \"<integer>\",\n      \"month\": \"<integer>\",\n      \"day\": \"<integer>\"\n    },\n    \"startTimeOfDay\": {\n      \"hours\": \"<integer>\",\n      \"minutes\": \"<integer>\",\n      \"seconds\": \"<integer>\",\n      \"nanos\": \"<integer>\"\n    },\n    \"repeatInterval\": \"<string>\"\n  },\n  \"status\": \"<string>\",\n  \"creationTime\": \"<dateTime>\",\n  \"lastModificationTime\": \"<dateTime>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7850efcf-4867-47c7-82df-d6615505f564",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transferJobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"projectId\": \"<string>\",\n  \"transferSpec\": {\n    \"gcsDataSink\": {\n      \"bucketName\": \"string\",\n      \"path\": \"string\"\n    },\n    \"gcsDataSource\": {\n      \"bucketName\": \"string\",\n      \"path\": \"string\"\n    },\n    \"awsS3DataSource\": {\n      \"bucketName\": \"string\",\n      \"awsAccessKey\": {\n        \"accessKeyId\": \"string\",\n        \"secretAccessKey\": \"string\"\n      },\n      \"path\": \"string\",\n      \"roleArn\": \"string\"\n    },\n    \"azureBlobStorageDataSource\": {\n      \"storageAccount\": \"string\",\n      \"azureCredentials\": {\n        \"sasToken\": \"string\"\n      },\n      \"container\": \"string\",\n      \"path\": \"string\"\n    },\n    \"objectConditions\": {\n      \"includePrefixes\": [\n        \"string\",\n        \"string\"\n      ],\n      \"excludePrefixes\": [\n        \"string\",\n        \"string\"\n      ],\n      \"minTimeElapsedSinceLastModification\": \"string\",\n      \"maxTimeElapsedSinceLastModification\": \"string\"\n    },\n    \"transferOptions\": {\n      \"overwriteObjectsAlreadyExistingInSink\": false,\n      \"deleteObjectsFromSourceAfterTransfer\": true,\n      \"deleteObjectsUniqueInSink\": true\n    }\n  },\n  \"schedule\": {\n    \"scheduleStartDate\": {\n      \"year\": 8468,\n      \"month\": 1511,\n      \"day\": 8234\n    },\n    \"scheduleEndDate\": {\n      \"year\": 7790,\n      \"month\": 1704,\n      \"day\": 8972\n    },\n    \"startTimeOfDay\": {\n      \"hours\": 4412,\n      \"minutes\": 3656,\n      \"seconds\": 5426,\n      \"nanos\": 3852\n    },\n    \"repeatInterval\": \"string\"\n  },\n  \"status\": \"<string>\",\n  \"creationTime\": \"<dateTime>\",\n  \"lastModificationTime\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"projectId\": \"string\",\n  \"transferSpec\": {\n    \"gcsDataSink\": {\n      \"bucketName\": \"string\",\n      \"path\": \"string\"\n    },\n    \"gcsDataSource\": {\n      \"bucketName\": \"string\",\n      \"path\": \"string\"\n    },\n    \"awsS3DataSource\": {\n      \"bucketName\": \"string\",\n      \"awsAccessKey\": {\n        \"accessKeyId\": \"string\",\n        \"secretAccessKey\": \"string\"\n      },\n      \"path\": \"string\",\n      \"roleArn\": \"string\"\n    },\n    \"azureBlobStorageDataSource\": {\n      \"storageAccount\": \"string\",\n      \"azureCredentials\": {\n        \"sasToken\": \"string\"\n      },\n      \"container\": \"string\",\n      \"path\": \"string\"\n    },\n    \"objectConditions\": {\n      \"includePrefixes\": [\n        \"string\",\n        \"string\"\n      ],\n      \"excludePrefixes\": [\n        \"string\",\n        \"string\"\n      ],\n      \"minTimeElapsedSinceLastModification\": \"string\",\n      \"maxTimeElapsedSinceLastModification\": \"string\"\n    },\n    \"transferOptions\": {\n      \"overwriteObjectsAlreadyExistingInSink\": false,\n      \"deleteObjectsFromSourceAfterTransfer\": false,\n      \"deleteObjectsUniqueInSink\": false\n    }\n  },\n  \"schedule\": {\n    \"scheduleStartDate\": {\n      \"year\": 7966,\n      \"month\": 422,\n      \"day\": 2375\n    },\n    \"scheduleEndDate\": {\n      \"year\": 3674,\n      \"month\": 3723,\n      \"day\": 9662\n    },\n    \"startTimeOfDay\": {\n      \"hours\": 630,\n      \"minutes\": 2486,\n      \"seconds\": 122,\n      \"nanos\": 8860\n    },\n    \"repeatInterval\": \"string\"\n  },\n  \"status\": \"DELETED\",\n  \"creationTime\": \"1971-11-20T22:28:16.840Z\",\n  \"lastModificationTime\": \"1968-05-10T06:47:00.231Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4734158f-cbff-4162-add6-c2e2bc4a7645",
+          "name": "Google Cloud Transfer Service Get a transfer job",
+          "request": {
+            "name": "Google Cloud Transfer Service Get a transfer job",
+            "description": {
+              "content": "Gets a transfer job.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "transferJobs",
+                ":jobName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "projectId",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "jobName",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "99365531-8986-44a4-8028-7a53931071c7",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transferJobs",
+                    ":jobName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "projectId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobName",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"projectId\": \"string\",\n  \"transferSpec\": {\n    \"gcsDataSink\": {\n      \"bucketName\": \"string\",\n      \"path\": \"string\"\n    },\n    \"gcsDataSource\": {\n      \"bucketName\": \"string\",\n      \"path\": \"string\"\n    },\n    \"awsS3DataSource\": {\n      \"bucketName\": \"string\",\n      \"awsAccessKey\": {\n        \"accessKeyId\": \"string\",\n        \"secretAccessKey\": \"string\"\n      },\n      \"path\": \"string\",\n      \"roleArn\": \"string\"\n    },\n    \"azureBlobStorageDataSource\": {\n      \"storageAccount\": \"string\",\n      \"azureCredentials\": {\n        \"sasToken\": \"string\"\n      },\n      \"container\": \"string\",\n      \"path\": \"string\"\n    },\n    \"objectConditions\": {\n      \"includePrefixes\": [\n        \"string\",\n        \"string\"\n      ],\n      \"excludePrefixes\": [\n        \"string\",\n        \"string\"\n      ],\n      \"minTimeElapsedSinceLastModification\": \"string\",\n      \"maxTimeElapsedSinceLastModification\": \"string\"\n    },\n    \"transferOptions\": {\n      \"overwriteObjectsAlreadyExistingInSink\": false,\n      \"deleteObjectsFromSourceAfterTransfer\": false,\n      \"deleteObjectsUniqueInSink\": false\n    }\n  },\n  \"schedule\": {\n    \"scheduleStartDate\": {\n      \"year\": 7966,\n      \"month\": 422,\n      \"day\": 2375\n    },\n    \"scheduleEndDate\": {\n      \"year\": 3674,\n      \"month\": 3723,\n      \"day\": 9662\n    },\n    \"startTimeOfDay\": {\n      \"hours\": 630,\n      \"minutes\": 2486,\n      \"seconds\": 122,\n      \"nanos\": 8860\n    },\n    \"repeatInterval\": \"string\"\n  },\n  \"status\": \"DELETED\",\n  \"creationTime\": \"1971-11-20T22:28:16.840Z\",\n  \"lastModificationTime\": \"1968-05-10T06:47:00.231Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3107ef64-efe4-4b44-89f8-2585d45ae956",
+          "name": "Google Cloud Transfer Service Update a transfer job",
+          "request": {
+            "name": "Google Cloud Transfer Service Update a transfer job",
+            "description": {
+              "content": "Updates a transfer job configuration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "transferJobs",
+                ":jobName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "jobName",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"projectId\": \"<string>\",\n  \"transferJob\": {\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"projectId\": \"<string>\",\n    \"transferSpec\": {\n      \"gcsDataSink\": {\n        \"bucketName\": \"<string>\",\n        \"path\": \"<string>\"\n      },\n      \"gcsDataSource\": {\n        \"bucketName\": \"<string>\",\n        \"path\": \"<string>\"\n      },\n      \"awsS3DataSource\": {\n        \"bucketName\": \"<string>\",\n        \"awsAccessKey\": {\n          \"accessKeyId\": \"<string>\",\n          \"secretAccessKey\": \"<string>\"\n        },\n        \"path\": \"<string>\",\n        \"roleArn\": \"<string>\"\n      },\n      \"azureBlobStorageDataSource\": {\n        \"storageAccount\": \"<string>\",\n        \"azureCredentials\": {\n          \"sasToken\": \"<string>\"\n        },\n        \"container\": \"<string>\",\n        \"path\": \"<string>\"\n      },\n      \"objectConditions\": {\n        \"includePrefixes\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"excludePrefixes\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"minTimeElapsedSinceLastModification\": \"<string>\",\n        \"maxTimeElapsedSinceLastModification\": \"<string>\"\n      },\n      \"transferOptions\": {\n        \"overwriteObjectsAlreadyExistingInSink\": \"<boolean>\",\n        \"deleteObjectsFromSourceAfterTransfer\": \"<boolean>\",\n        \"deleteObjectsUniqueInSink\": \"<boolean>\"\n      }\n    },\n    \"schedule\": {\n      \"scheduleStartDate\": {\n        \"year\": \"<integer>\",\n        \"month\": \"<integer>\",\n        \"day\": \"<integer>\"\n      },\n      \"scheduleEndDate\": {\n        \"year\": \"<integer>\",\n        \"month\": \"<integer>\",\n        \"day\": \"<integer>\"\n      },\n      \"startTimeOfDay\": {\n        \"hours\": \"<integer>\",\n        \"minutes\": \"<integer>\",\n        \"seconds\": \"<integer>\",\n        \"nanos\": \"<integer>\"\n      },\n      \"repeatInterval\": \"<string>\"\n    },\n    \"status\": \"<string>\",\n    \"creationTime\": \"<dateTime>\",\n    \"lastModificationTime\": \"<dateTime>\"\n  },\n  \"updateTransferJobFieldMask\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "68f5f5d7-4712-4611-95da-f2d92ab004e2",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transferJobs",
+                    ":jobName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobName",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"projectId\": \"<string>\",\n  \"transferJob\": {\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"projectId\": \"string\",\n    \"transferSpec\": {\n      \"gcsDataSink\": {\n        \"bucketName\": \"string\",\n        \"path\": \"string\"\n      },\n      \"gcsDataSource\": {\n        \"bucketName\": \"string\",\n        \"path\": \"string\"\n      },\n      \"awsS3DataSource\": {\n        \"bucketName\": \"string\",\n        \"awsAccessKey\": {\n          \"accessKeyId\": \"string\",\n          \"secretAccessKey\": \"string\"\n        },\n        \"path\": \"string\",\n        \"roleArn\": \"string\"\n      },\n      \"azureBlobStorageDataSource\": {\n        \"storageAccount\": \"string\",\n        \"azureCredentials\": {\n          \"sasToken\": \"string\"\n        },\n        \"container\": \"string\",\n        \"path\": \"string\"\n      },\n      \"objectConditions\": {\n        \"includePrefixes\": [\n          \"string\",\n          \"string\"\n        ],\n        \"excludePrefixes\": [\n          \"string\",\n          \"string\"\n        ],\n        \"minTimeElapsedSinceLastModification\": \"string\",\n        \"maxTimeElapsedSinceLastModification\": \"string\"\n      },\n      \"transferOptions\": {\n        \"overwriteObjectsAlreadyExistingInSink\": false,\n        \"deleteObjectsFromSourceAfterTransfer\": true,\n        \"deleteObjectsUniqueInSink\": false\n      }\n    },\n    \"schedule\": {\n      \"scheduleStartDate\": {\n        \"year\": 204,\n        \"month\": 4110,\n        \"day\": 7122\n      },\n      \"scheduleEndDate\": {\n        \"year\": 8506,\n        \"month\": 2801,\n        \"day\": 8654\n      },\n      \"startTimeOfDay\": {\n        \"hours\": 2314,\n        \"minutes\": 964,\n        \"seconds\": 8328,\n        \"nanos\": 789\n      },\n      \"repeatInterval\": \"string\"\n    },\n    \"status\": \"DISABLED\",\n    \"creationTime\": \"1952-09-06T02:30:49.320Z\",\n    \"lastModificationTime\": \"2008-07-09T19:02:07.888Z\"\n  },\n  \"updateTransferJobFieldMask\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"projectId\": \"string\",\n  \"transferSpec\": {\n    \"gcsDataSink\": {\n      \"bucketName\": \"string\",\n      \"path\": \"string\"\n    },\n    \"gcsDataSource\": {\n      \"bucketName\": \"string\",\n      \"path\": \"string\"\n    },\n    \"awsS3DataSource\": {\n      \"bucketName\": \"string\",\n      \"awsAccessKey\": {\n        \"accessKeyId\": \"string\",\n        \"secretAccessKey\": \"string\"\n      },\n      \"path\": \"string\",\n      \"roleArn\": \"string\"\n    },\n    \"azureBlobStorageDataSource\": {\n      \"storageAccount\": \"string\",\n      \"azureCredentials\": {\n        \"sasToken\": \"string\"\n      },\n      \"container\": \"string\",\n      \"path\": \"string\"\n    },\n    \"objectConditions\": {\n      \"includePrefixes\": [\n        \"string\",\n        \"string\"\n      ],\n      \"excludePrefixes\": [\n        \"string\",\n        \"string\"\n      ],\n      \"minTimeElapsedSinceLastModification\": \"string\",\n      \"maxTimeElapsedSinceLastModification\": \"string\"\n    },\n    \"transferOptions\": {\n      \"overwriteObjectsAlreadyExistingInSink\": false,\n      \"deleteObjectsFromSourceAfterTransfer\": false,\n      \"deleteObjectsUniqueInSink\": false\n    }\n  },\n  \"schedule\": {\n    \"scheduleStartDate\": {\n      \"year\": 7966,\n      \"month\": 422,\n      \"day\": 2375\n    },\n    \"scheduleEndDate\": {\n      \"year\": 3674,\n      \"month\": 3723,\n      \"day\": 9662\n    },\n    \"startTimeOfDay\": {\n      \"hours\": 630,\n      \"minutes\": 2486,\n      \"seconds\": 122,\n      \"nanos\": 8860\n    },\n    \"repeatInterval\": \"string\"\n  },\n  \"status\": \"DELETED\",\n  \"creationTime\": \"1971-11-20T22:28:16.840Z\",\n  \"lastModificationTime\": \"1968-05-10T06:47:00.231Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "892417af-e4c2-4956-bd97-b495423ed077",
+          "name": "Google Cloud Transfer Service Run a transfer job",
+          "request": {
+            "name": "Google Cloud Transfer Service Run a transfer job",
+            "description": {
+              "content": "Starts a new operation for the specified transfer job.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "transferJobs",
+                "{{jobName}}:run"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"projectId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1df8d809-1add-4ba0-9fba-256861a88e9f",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transferJobs",
+                    "{{jobName}}:run"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"projectId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"done\": true,\n  \"metadata\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://storagetransfer.googleapis.com/v1",
+      "key": "baseUrl"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required) ",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "<string>",
+      "key": "jobName"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "https://www.googleapis.com/auth/cloud-platform"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://oauth2.googleapis.com/token"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://accounts.google.com/o/oauth2/auth"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "119dc5ff-e392-45eb-bd3b-dba7bc56656b",
+    "name": "Google Cloud Transfer Service Google Storage Transfer AgentPools TransferJobs API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Storage Transfer API provides programmatic access to Google Cloud Storage Transfer Service for creating, managing, and monitoring data transfer jobs between cloud storage systems and on-premises storage. It supports scheduling transfers, configuring transfer options, managing agent pools, and monitoring transfer operations.\n\nContact Support:\n Name: Google Cloud Support",
+      "type": "text/plain"
+    }
+  }
+}
