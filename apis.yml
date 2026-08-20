@@ -35,6 +35,8 @@ apis:
   humanURL: https://cloud.google.com/storage-transfer/docs
   baseURL: https://storagetransfer.googleapis.com
   tags:
+  - Agent Pools
+  tags_raw:
   - AgentPools
   properties:
   - type: OpenAPI
