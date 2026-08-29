@@ -3,6 +3,18 @@ description: >-
   Google Cloud Storage Transfer Service enables seamless data movement across object and file storage systems, including
   transfers from Amazon S3, Azure Blob Storage, or Cloud Storage to Cloud Storage, and from on-premises storage to Cloud
   Storage. It is optimized for large-scale transfers involving terabytes or petabytes of data.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: self-serve
