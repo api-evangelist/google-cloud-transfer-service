@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Google Cloud Transfer Service Google Storage Transfer AgentPools API
+  title: Google Cloud Transfer Service Google Storage Transfer Agent Pools API
   description: The Storage Transfer API provides programmatic access to Google Cloud Storage Transfer Service for creating, managing, and monitoring data transfer jobs between cloud storage systems and on-premises storage. It supports scheduling transfers, configuring transfer options, managing agent pools, and monitoring transfer operations.
   version: v1
   contact:

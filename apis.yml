@@ -86,6 +86,8 @@ apis:
   - type: JSONSchema
     url: json-schema/google-cloud-transfer-service-job-schema.json
 common:
+  - type: Website
+    url: https://www.google.com/
   - type: AgenticAccess
     url: agentic-access/google-cloud-transfer-service-agentic-access.yml
   - type: VulnerabilityDisclosure
@@ -113,3 +115,5 @@ integrations:
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
+x-parent: google-cloud-platform
+x-relationship: product

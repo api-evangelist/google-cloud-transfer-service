@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Google Cloud Transfer Service Google Storage Transfer AgentPools TransferJobs API
+  title: Google Cloud Transfer Service Google Storage Transfer AgentPools Transfer Jobs API
   description: The Storage Transfer API provides programmatic access to Google Cloud Storage Transfer Service for creating, managing, and monitoring data transfer jobs between cloud storage systems and on-premises storage. It supports scheduling transfers, configuring transfer options, managing agent pools, and monitoring transfer operations.
   version: v1
   contact:
@@ -154,6 +154,78 @@ paths:
                 $ref: '#/components/schemas/Operation'
 components:
   schemas:
+    AwsS3Data:
+      type: object
+      description: Amazon S3 bucket reference.
+      properties:
+        bucketName:
+          type: string
+          description: S3 bucket name.
+        awsAccessKey:
+          type: object
+          properties:
+            accessKeyId:
+              type: string
+            secretAccessKey:
+              type: string
+        path:
+          type: string
+        roleArn:
+          type: string
+    ListTransferJobsResponse:
+      type: object
+      properties:
+        transferJobs:
+          type: array
+          items:
+            $ref: '#/components/schemas/TransferJob'
+        nextPageToken:
+          type: string
+    AzureBlobStorageData:
+      type: object
+      description: Azure Blob Storage container reference.
+      properties:
+        storageAccount:
+          type: string
+        azureCredentials:
+          type: object
+          properties:
+            sasToken:
+              type: string
+        container:
+          type: string
+        path:
+          type: string
+    GcsData:
+      type: object
+      description: Google Cloud Storage bucket reference.
+      properties:
+        bucketName:
+          type: string
+          description: Cloud Storage bucket name.
+        path:
+          type: string
+          description: Root path to transfer objects.
+    Operation:
+      type: object
+      description: A long-running operation.
+      properties:
+        name:
+          type: string
+        done:
+          type: boolean
+        metadata:
+          type: object
+    Date:
+      type: object
+      description: A date in the format YYYY-MM-DD.
+      properties:
+        year:
+          type: integer
+        month:
+          type: integer
+        day:
+          type: integer
     TransferSpec:
       type: object
       description: Configuration for running a transfer.
@@ -192,26 +264,6 @@ components:
               type: boolean
             deleteObjectsUniqueInSink:
               type: boolean
-    Date:
-      type: object
-      description: A date in the format YYYY-MM-DD.
-      properties:
-        year:
-          type: integer
-        month:
-          type: integer
-        day:
-          type: integer
-    Operation:
-      type: object
-      description: A long-running operation.
-      properties:
-        name:
-          type: string
-        done:
-          type: boolean
-        metadata:
-          type: object
     TransferJob:
       type: object
       description: A description of the transfer job configuration.
@@ -242,58 +294,6 @@ components:
         lastModificationTime:
           type: string
           format: date-time
-    AzureBlobStorageData:
-      type: object
-      description: Azure Blob Storage container reference.
-      properties:
-        storageAccount:
-          type: string
-        azureCredentials:
-          type: object
-          properties:
-            sasToken:
-              type: string
-        container:
-          type: string
-        path:
-          type: string
-    ListTransferJobsResponse:
-      type: object
-      properties:
-        transferJobs:
-          type: array
-          items:
-            $ref: '#/components/schemas/TransferJob'
-        nextPageToken:
-          type: string
-    AwsS3Data:
-      type: object
-      description: Amazon S3 bucket reference.
-      properties:
-        bucketName:
-          type: string
-          description: S3 bucket name.
-        awsAccessKey:
-          type: object
-          properties:
-            accessKeyId:
-              type: string
-            secretAccessKey:
-              type: string
-        path:
-          type: string
-        roleArn:
-          type: string
-    GcsData:
-      type: object
-      description: Google Cloud Storage bucket reference.
-      properties:
-        bucketName:
-          type: string
-          description: Cloud Storage bucket name.
-        path:
-          type: string
-          description: Root path to transfer objects.
     Schedule:
       type: object
       description: Schedule for a transfer job.
