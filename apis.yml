@@ -41,22 +41,6 @@ tags:
   - S3
   - Storage
 apis:
-- aid: google-cloud-transfer-service:google-cloud-transfer-service-agentpools-api
-  name: Google Cloud Transfer Service AgentPools API
-  description: Operations for managing on-premises transfer agent pools
-  humanURL: https://cloud.google.com/storage-transfer/docs
-  baseURL: https://storagetransfer.googleapis.com
-  tags:
-  - Agent Pools
-  tags_raw:
-  - AgentPools
-  properties:
-  - type: OpenAPI
-    url: openapi/google-cloud-transfer-service-agentpools-api-openapi.yml
-  - type: Documentation
-    url: https://cloud.google.com/storage-transfer/docs/reference/rest
-  - type: JSONSchema
-    url: json-schema/google-cloud-transfer-service-job-schema.json
 - aid: google-cloud-transfer-service:google-cloud-transfer-service-transferjobs-api
   name: Google Cloud Transfer Service TransferJobs API
   description: Operations for managing transfer jobs
@@ -81,6 +65,20 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/google-cloud-transfer-service-transferoperations-api-openapi.yml
+  - type: Documentation
+    url: https://cloud.google.com/storage-transfer/docs/reference/rest
+  - type: JSONSchema
+    url: json-schema/google-cloud-transfer-service-job-schema.json
+- aid: google-cloud-transfer-service:google-cloud-transfer-service-agent-pools-api
+  name: Google Cloud Transfer Service Agent Pools API
+  description: Operations for managing on-premises transfer agent pools
+  humanURL: https://cloud.google.com/storage-transfer/docs
+  baseURL: https://storagetransfer.googleapis.com
+  tags:
+  - Agent Pools
+  properties:
+  - type: OpenAPI
+    url: openapi/google-cloud-transfer-service-agent-pools-api-openapi.yml
   - type: Documentation
     url: https://cloud.google.com/storage-transfer/docs/reference/rest
   - type: JSONSchema
