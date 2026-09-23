@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Google Cloud Transfer Service Google Storage Transfer AgentPools Transfer Jobs API
+  title: Google Cloud Transfer Service Google Storage Transfer…
   description: The Storage Transfer API provides programmatic access to Google Cloud Storage Transfer Service for creating, managing, and monitoring data transfer jobs between cloud storage systems and on-premises storage. It supports scheduling transfers, configuring transfer options, managing agent pools, and monitoring transfer operations.
   version: v1
   contact:
@@ -154,24 +154,16 @@ paths:
                 $ref: '#/components/schemas/Operation'
 components:
   schemas:
-    AwsS3Data:
+    Date:
       type: object
-      description: Amazon S3 bucket reference.
+      description: A date in the format YYYY-MM-DD.
       properties:
-        bucketName:
-          type: string
-          description: S3 bucket name.
-        awsAccessKey:
-          type: object
-          properties:
-            accessKeyId:
-              type: string
-            secretAccessKey:
-              type: string
-        path:
-          type: string
-        roleArn:
-          type: string
+        year:
+          type: integer
+        month:
+          type: integer
+        day:
+          type: integer
     ListTransferJobsResponse:
       type: object
       properties:
@@ -196,16 +188,6 @@ components:
           type: string
         path:
           type: string
-    GcsData:
-      type: object
-      description: Google Cloud Storage bucket reference.
-      properties:
-        bucketName:
-          type: string
-          description: Cloud Storage bucket name.
-        path:
-          type: string
-          description: Root path to transfer objects.
     Operation:
       type: object
       description: A long-running operation.
@@ -216,16 +198,86 @@ components:
           type: boolean
         metadata:
           type: object
-    Date:
+    GcsData:
       type: object
-      description: A date in the format YYYY-MM-DD.
+      description: Google Cloud Storage bucket reference.
       properties:
-        year:
-          type: integer
-        month:
-          type: integer
-        day:
-          type: integer
+        bucketName:
+          type: string
+          description: Cloud Storage bucket name.
+        path:
+          type: string
+          description: Root path to transfer objects.
+    Schedule:
+      type: object
+      description: Schedule for a transfer job.
+      properties:
+        scheduleStartDate:
+          $ref: '#/components/schemas/Date'
+        scheduleEndDate:
+          $ref: '#/components/schemas/Date'
+        startTimeOfDay:
+          type: object
+          properties:
+            hours:
+              type: integer
+            minutes:
+              type: integer
+            seconds:
+              type: integer
+            nanos:
+              type: integer
+        repeatInterval:
+          type: string
+          description: Interval between transfer runs in seconds format (e.g., 86400s).
+    AwsS3Data:
+      type: object
+      description: Amazon S3 bucket reference.
+      properties:
+        bucketName:
+          type: string
+          description: S3 bucket name.
+        awsAccessKey:
+          type: object
+          properties:
+            accessKeyId:
+              type: string
+            secretAccessKey:
+              type: string
+        path:
+          type: string
+        roleArn:
+          type: string
+    TransferJob:
+      type: object
+      description: A description of the transfer job configuration.
+      properties:
+        name:
+          type: string
+          description: A unique name chosen by the user or auto-generated.
+        description:
+          type: string
+          description: A description provided by the user.
+        projectId:
+          type: string
+          description: The ID of the Google Cloud project that owns the job.
+        transferSpec:
+          $ref: '#/components/schemas/TransferSpec'
+        schedule:
+          $ref: '#/components/schemas/Schedule'
+        status:
+          type: string
+          enum:
+          - STATUS_UNSPECIFIED
+          - ENABLED
+          - DISABLED
+          - DELETED
+        creationTime:
+          type: string
+          format: date-time
+        lastModificationTime:
+          type: string
+          format: date-time
     TransferSpec:
       type: object
       description: Configuration for running a transfer.
@@ -264,58 +316,6 @@ components:
               type: boolean
             deleteObjectsUniqueInSink:
               type: boolean
-    TransferJob:
-      type: object
-      description: A description of the transfer job configuration.
-      properties:
-        name:
-          type: string
-          description: A unique name chosen by the user or auto-generated.
-        description:
-          type: string
-          description: A description provided by the user.
-        projectId:
-          type: string
-          description: The ID of the Google Cloud project that owns the job.
-        transferSpec:
-          $ref: '#/components/schemas/TransferSpec'
-        schedule:
-          $ref: '#/components/schemas/Schedule'
-        status:
-          type: string
-          enum:
-          - STATUS_UNSPECIFIED
-          - ENABLED
-          - DISABLED
-          - DELETED
-        creationTime:
-          type: string
-          format: date-time
-        lastModificationTime:
-          type: string
-          format: date-time
-    Schedule:
-      type: object
-      description: Schedule for a transfer job.
-      properties:
-        scheduleStartDate:
-          $ref: '#/components/schemas/Date'
-        scheduleEndDate:
-          $ref: '#/components/schemas/Date'
-        startTimeOfDay:
-          type: object
-          properties:
-            hours:
-              type: integer
-            minutes:
-              type: integer
-            seconds:
-              type: integer
-            nanos:
-              type: integer
-        repeatInterval:
-          type: string
-          description: Interval between transfer runs in seconds format (e.g., 86400s).
   securitySchemes:
     oauth2:
       type: oauth2
