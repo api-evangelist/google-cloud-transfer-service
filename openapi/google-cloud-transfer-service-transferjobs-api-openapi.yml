@@ -154,25 +154,6 @@ paths:
                 $ref: '#/components/schemas/Operation'
 components:
   schemas:
-    Date:
-      type: object
-      description: A date in the format YYYY-MM-DD.
-      properties:
-        year:
-          type: integer
-        month:
-          type: integer
-        day:
-          type: integer
-    ListTransferJobsResponse:
-      type: object
-      properties:
-        transferJobs:
-          type: array
-          items:
-            $ref: '#/components/schemas/TransferJob'
-        nextPageToken:
-          type: string
     AzureBlobStorageData:
       type: object
       description: Azure Blob Storage container reference.
@@ -188,26 +169,33 @@ components:
           type: string
         path:
           type: string
-    Operation:
+    ListTransferJobsResponse:
       type: object
-      description: A long-running operation.
       properties:
-        name:
+        transferJobs:
+          type: array
+          items:
+            $ref: '#/components/schemas/TransferJob'
+        nextPageToken:
           type: string
-        done:
-          type: boolean
-        metadata:
-          type: object
-    GcsData:
+    AwsS3Data:
       type: object
-      description: Google Cloud Storage bucket reference.
+      description: Amazon S3 bucket reference.
       properties:
         bucketName:
           type: string
-          description: Cloud Storage bucket name.
+          description: S3 bucket name.
+        awsAccessKey:
+          type: object
+          properties:
+            accessKeyId:
+              type: string
+            secretAccessKey:
+              type: string
         path:
           type: string
-          description: Root path to transfer objects.
+        roleArn:
+          type: string
     Schedule:
       type: object
       description: Schedule for a transfer job.
@@ -230,24 +218,6 @@ components:
         repeatInterval:
           type: string
           description: Interval between transfer runs in seconds format (e.g., 86400s).
-    AwsS3Data:
-      type: object
-      description: Amazon S3 bucket reference.
-      properties:
-        bucketName:
-          type: string
-          description: S3 bucket name.
-        awsAccessKey:
-          type: object
-          properties:
-            accessKeyId:
-              type: string
-            secretAccessKey:
-              type: string
-        path:
-          type: string
-        roleArn:
-          type: string
     TransferJob:
       type: object
       description: A description of the transfer job configuration.
@@ -278,6 +248,26 @@ components:
         lastModificationTime:
           type: string
           format: date-time
+    Operation:
+      type: object
+      description: A long-running operation.
+      properties:
+        name:
+          type: string
+        done:
+          type: boolean
+        metadata:
+          type: object
+    Date:
+      type: object
+      description: A date in the format YYYY-MM-DD.
+      properties:
+        year:
+          type: integer
+        month:
+          type: integer
+        day:
+          type: integer
     TransferSpec:
       type: object
       description: Configuration for running a transfer.
@@ -316,6 +306,16 @@ components:
               type: boolean
             deleteObjectsUniqueInSink:
               type: boolean
+    GcsData:
+      type: object
+      description: Google Cloud Storage bucket reference.
+      properties:
+        bucketName:
+          type: string
+          description: Cloud Storage bucket name.
+        path:
+          type: string
+          description: Root path to transfer objects.
   securitySchemes:
     oauth2:
       type: oauth2

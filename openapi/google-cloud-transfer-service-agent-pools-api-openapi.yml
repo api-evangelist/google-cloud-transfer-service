@@ -68,6 +68,15 @@ paths:
                 $ref: '#/components/schemas/AgentPool'
 components:
   schemas:
+    ListAgentPoolsResponse:
+      type: object
+      properties:
+        agentPools:
+          type: array
+          items:
+            $ref: '#/components/schemas/AgentPool'
+        nextPageToken:
+          type: string
     AgentPool:
       type: object
       description: An agent pool for on-premises transfer operations.
@@ -89,15 +98,6 @@ components:
             limitMbps:
               type: integer
               description: Bandwidth rate limit in megabytes per second.
-    ListAgentPoolsResponse:
-      type: object
-      properties:
-        agentPools:
-          type: array
-          items:
-            $ref: '#/components/schemas/AgentPool'
-        nextPageToken:
-          type: string
   securitySchemes:
     oauth2:
       type: oauth2
