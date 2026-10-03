@@ -154,30 +154,16 @@ paths:
                 $ref: '#/components/schemas/Operation'
 components:
   schemas:
-    AzureBlobStorageData:
+    Operation:
       type: object
-      description: Azure Blob Storage container reference.
+      description: A long-running operation.
       properties:
-        storageAccount:
+        name:
           type: string
-        azureCredentials:
+        done:
+          type: boolean
+        metadata:
           type: object
-          properties:
-            sasToken:
-              type: string
-        container:
-          type: string
-        path:
-          type: string
-    ListTransferJobsResponse:
-      type: object
-      properties:
-        transferJobs:
-          type: array
-          items:
-            $ref: '#/components/schemas/TransferJob'
-        nextPageToken:
-          type: string
     AwsS3Data:
       type: object
       description: Amazon S3 bucket reference.
@@ -196,78 +182,6 @@ components:
           type: string
         roleArn:
           type: string
-    Schedule:
-      type: object
-      description: Schedule for a transfer job.
-      properties:
-        scheduleStartDate:
-          $ref: '#/components/schemas/Date'
-        scheduleEndDate:
-          $ref: '#/components/schemas/Date'
-        startTimeOfDay:
-          type: object
-          properties:
-            hours:
-              type: integer
-            minutes:
-              type: integer
-            seconds:
-              type: integer
-            nanos:
-              type: integer
-        repeatInterval:
-          type: string
-          description: Interval between transfer runs in seconds format (e.g., 86400s).
-    TransferJob:
-      type: object
-      description: A description of the transfer job configuration.
-      properties:
-        name:
-          type: string
-          description: A unique name chosen by the user or auto-generated.
-        description:
-          type: string
-          description: A description provided by the user.
-        projectId:
-          type: string
-          description: The ID of the Google Cloud project that owns the job.
-        transferSpec:
-          $ref: '#/components/schemas/TransferSpec'
-        schedule:
-          $ref: '#/components/schemas/Schedule'
-        status:
-          type: string
-          enum:
-          - STATUS_UNSPECIFIED
-          - ENABLED
-          - DISABLED
-          - DELETED
-        creationTime:
-          type: string
-          format: date-time
-        lastModificationTime:
-          type: string
-          format: date-time
-    Operation:
-      type: object
-      description: A long-running operation.
-      properties:
-        name:
-          type: string
-        done:
-          type: boolean
-        metadata:
-          type: object
-    Date:
-      type: object
-      description: A date in the format YYYY-MM-DD.
-      properties:
-        year:
-          type: integer
-        month:
-          type: integer
-        day:
-          type: integer
     TransferSpec:
       type: object
       description: Configuration for running a transfer.
@@ -306,6 +220,40 @@ components:
               type: boolean
             deleteObjectsUniqueInSink:
               type: boolean
+    AzureBlobStorageData:
+      type: object
+      description: Azure Blob Storage container reference.
+      properties:
+        storageAccount:
+          type: string
+        azureCredentials:
+          type: object
+          properties:
+            sasToken:
+              type: string
+        container:
+          type: string
+        path:
+          type: string
+    ListTransferJobsResponse:
+      type: object
+      properties:
+        transferJobs:
+          type: array
+          items:
+            $ref: '#/components/schemas/TransferJob'
+        nextPageToken:
+          type: string
+    Date:
+      type: object
+      description: A date in the format YYYY-MM-DD.
+      properties:
+        year:
+          type: integer
+        month:
+          type: integer
+        day:
+          type: integer
     GcsData:
       type: object
       description: Google Cloud Storage bucket reference.
@@ -316,6 +264,58 @@ components:
         path:
           type: string
           description: Root path to transfer objects.
+    TransferJob:
+      type: object
+      description: A description of the transfer job configuration.
+      properties:
+        name:
+          type: string
+          description: A unique name chosen by the user or auto-generated.
+        description:
+          type: string
+          description: A description provided by the user.
+        projectId:
+          type: string
+          description: The ID of the Google Cloud project that owns the job.
+        transferSpec:
+          $ref: '#/components/schemas/TransferSpec'
+        schedule:
+          $ref: '#/components/schemas/Schedule'
+        status:
+          type: string
+          enum:
+          - STATUS_UNSPECIFIED
+          - ENABLED
+          - DISABLED
+          - DELETED
+        creationTime:
+          type: string
+          format: date-time
+        lastModificationTime:
+          type: string
+          format: date-time
+    Schedule:
+      type: object
+      description: Schedule for a transfer job.
+      properties:
+        scheduleStartDate:
+          $ref: '#/components/schemas/Date'
+        scheduleEndDate:
+          $ref: '#/components/schemas/Date'
+        startTimeOfDay:
+          type: object
+          properties:
+            hours:
+              type: integer
+            minutes:
+              type: integer
+            seconds:
+              type: integer
+            nanos:
+              type: integer
+        repeatInterval:
+          type: string
+          description: Interval between transfer runs in seconds format (e.g., 86400s).
   securitySchemes:
     oauth2:
       type: oauth2

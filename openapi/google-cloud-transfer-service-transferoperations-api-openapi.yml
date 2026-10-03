@@ -53,6 +53,15 @@ paths:
                 $ref: '#/components/schemas/ListOperationsResponse'
 components:
   schemas:
+    ListOperationsResponse:
+      type: object
+      properties:
+        operations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Operation'
+        nextPageToken:
+          type: string
     Operation:
       type: object
       description: A long-running operation.
@@ -63,15 +72,6 @@ components:
           type: boolean
         metadata:
           type: object
-    ListOperationsResponse:
-      type: object
-      properties:
-        operations:
-          type: array
-          items:
-            $ref: '#/components/schemas/Operation'
-        nextPageToken:
-          type: string
   securitySchemes:
     oauth2:
       type: oauth2
