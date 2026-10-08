@@ -84,6 +84,12 @@ apis:
   - type: JSONSchema
     url: json-schema/google-cloud-transfer-service-job-schema.json
 common:
+  - type: Plans
+    url: plans/google-cloud-transfer-service-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/google-cloud-transfer-service-rate-limits.yml
+  - type: FinOps
+    url: finops/google-cloud-transfer-service-finops.yml
   - type: Website
     url: https://www.google.com/
   - type: AgenticAccess
