@@ -154,6 +154,44 @@ paths:
                 $ref: '#/components/schemas/Operation'
 components:
   schemas:
+    TransferSpec:
+      type: object
+      description: Configuration for running a transfer.
+      properties:
+        gcsDataSink:
+          $ref: '#/components/schemas/GcsData'
+        gcsDataSource:
+          $ref: '#/components/schemas/GcsData'
+        awsS3DataSource:
+          $ref: '#/components/schemas/AwsS3Data'
+        azureBlobStorageDataSource:
+          $ref: '#/components/schemas/AzureBlobStorageData'
+        objectConditions:
+          type: object
+          description: Conditions to filter objects for transfer.
+          properties:
+            includePrefixes:
+              type: array
+              items:
+                type: string
+            excludePrefixes:
+              type: array
+              items:
+                type: string
+            minTimeElapsedSinceLastModification:
+              type: string
+            maxTimeElapsedSinceLastModification:
+              type: string
+        transferOptions:
+          type: object
+          description: Transfer options to control behavior.
+          properties:
+            overwriteObjectsAlreadyExistingInSink:
+              type: boolean
+            deleteObjectsFromSourceAfterTransfer:
+              type: boolean
+            deleteObjectsUniqueInSink:
+              type: boolean
     AzureBlobStorageData:
       type: object
       description: Azure Blob Storage container reference.
@@ -169,6 +207,35 @@ components:
           type: string
         path:
           type: string
+    Operation:
+      type: object
+      description: A long-running operation.
+      properties:
+        name:
+          type: string
+        done:
+          type: boolean
+        metadata:
+          type: object
+    ListTransferJobsResponse:
+      type: object
+      properties:
+        transferJobs:
+          type: array
+          items:
+            $ref: '#/components/schemas/TransferJob'
+        nextPageToken:
+          type: string
+    GcsData:
+      type: object
+      description: Google Cloud Storage bucket reference.
+      properties:
+        bucketName:
+          type: string
+          description: Cloud Storage bucket name.
+        path:
+          type: string
+          description: Root path to transfer objects.
     AwsS3Data:
       type: object
       description: Amazon S3 bucket reference.
@@ -187,16 +254,6 @@ components:
           type: string
         roleArn:
           type: string
-    Operation:
-      type: object
-      description: A long-running operation.
-      properties:
-        name:
-          type: string
-        done:
-          type: boolean
-        metadata:
-          type: object
     Date:
       type: object
       description: A date in the format YYYY-MM-DD.
@@ -237,63 +294,6 @@ components:
         lastModificationTime:
           type: string
           format: date-time
-    TransferSpec:
-      type: object
-      description: Configuration for running a transfer.
-      properties:
-        gcsDataSink:
-          $ref: '#/components/schemas/GcsData'
-        gcsDataSource:
-          $ref: '#/components/schemas/GcsData'
-        awsS3DataSource:
-          $ref: '#/components/schemas/AwsS3Data'
-        azureBlobStorageDataSource:
-          $ref: '#/components/schemas/AzureBlobStorageData'
-        objectConditions:
-          type: object
-          description: Conditions to filter objects for transfer.
-          properties:
-            includePrefixes:
-              type: array
-              items:
-                type: string
-            excludePrefixes:
-              type: array
-              items:
-                type: string
-            minTimeElapsedSinceLastModification:
-              type: string
-            maxTimeElapsedSinceLastModification:
-              type: string
-        transferOptions:
-          type: object
-          description: Transfer options to control behavior.
-          properties:
-            overwriteObjectsAlreadyExistingInSink:
-              type: boolean
-            deleteObjectsFromSourceAfterTransfer:
-              type: boolean
-            deleteObjectsUniqueInSink:
-              type: boolean
-    GcsData:
-      type: object
-      description: Google Cloud Storage bucket reference.
-      properties:
-        bucketName:
-          type: string
-          description: Cloud Storage bucket name.
-        path:
-          type: string
-          description: Root path to transfer objects.
-    ListTransferJobsResponse:
-      type: object
-      properties:
-        transferJobs:
-          type: array
-          items:
-            $ref: '#/components/schemas/TransferJob'
-        nextPageToken:
-          type: string
     Schedule:
       type: object
       description: Schedule for a transfer job.
